@@ -13,6 +13,8 @@ export default class Movie extends React.Component {
     };
   }
 
+
+  //run on the first render
   componentDidMount() {
     this.fetchMovie(this.props.match.params.id);
   }
