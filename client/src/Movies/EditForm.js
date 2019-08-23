@@ -47,9 +47,14 @@ const handleSubmit = e => {
     e.preventDefault();
     axios.put(`http://localhost:5000/api/movies/${props.match.params.id}`, movies) //going to get the id out of our url, could have also put movies.id in instead of ..params.id..
 .then(res => {console.log(res) //no need for state management, when navigate back to the movie list it's going to create a get request, updating the updated value
-props.history.push('/')
+props.history.push('/') //push new data in 
 })
 
+}
+
+const addStar = e => {
+    e.preventDefault();
+    setMovies({...movies, stars: [...movies.stars, '']});
 }
 
 if (!movies) {
@@ -94,6 +99,7 @@ return(
                                 />
              })}
              <button type="submit"> Update move</button>
+             <button onClick={addStar}> Add star</button>
         </form>
     )
 }
