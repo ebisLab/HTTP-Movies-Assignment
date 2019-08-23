@@ -43,7 +43,7 @@ export default class Movie extends React.Component {
     .delete(`http://localhost:5000/api/movies/${this.state.movie.id}`) //state is in .this.state.movie.id
     .then(res =>{ console.log(res)
     this.props.history.push('/')})
-    .catch(err=> console.timeLog(err.response))
+    .catch(err=> console.log(err.response))
   };
 
   render() {

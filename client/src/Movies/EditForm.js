@@ -58,7 +58,10 @@ const addStar = e => {
 }
 
 const deleteStar = e => {
-    
+    e.preventDefault();
+    setMovies(movies.filter(movie => movie.id != props.match.params.id))
+
+
 }
 
 if (!movies) {
@@ -104,6 +107,7 @@ return(
              })}
              <button type="submit"> Update move</button>
              <button onClick={addStar}> Add star</button>
+             <button onClick={deleteStar}> Delete star</button>
         </form>
     )
 }
