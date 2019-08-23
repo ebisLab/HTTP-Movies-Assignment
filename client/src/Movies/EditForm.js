@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const UpdateForm = (props) => {
 
-    const[movies,setMovies] = useState(null);
+    const[movies,setMovies] = useState(null); //checking to see if movie is defined at the bottom, if it's not display loading div
 
 //     const[movies,setMovies] = useState({
 //         title: '',
@@ -55,6 +55,10 @@ props.history.push('/') //push new data in
 const addStar = e => {
     e.preventDefault();
     setMovies({...movies, stars: [...movies.stars, '']});
+}
+
+const deleteStar = e => {
+    
 }
 
 if (!movies) {
