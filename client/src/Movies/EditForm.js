@@ -15,8 +15,9 @@ const UpdateForm = (props) => {
 const fetchMovie = id => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
-      .then(res => this.setMovies(res.data))
+      .then(res => setMovies(res.data))
       .then(res => console.log(res, 'res'))
+    //   .then(console.log(setMovies, 'set movies'))
       .catch(err => console.log(err.response));
   };
 
