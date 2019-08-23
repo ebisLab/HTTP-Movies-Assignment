@@ -5,12 +5,14 @@ import axios from 'axios'
 
 const UpdateForm = (props) => {
 
-    const[movies,setMovies] = useState({
-        title: '',
-        director: '',
-        metascore: '',
-        stars: []
-});
+    const[movies,setMovies] = useState(null);
+
+//     const[movies,setMovies] = useState({
+//         title: '',
+//         director: '',
+//         metascore: '',
+//         stars: []
+// });
 
 const fetchMovie = id => {
     axios
@@ -39,6 +41,10 @@ const handleStar = index => e => {
             return star;
         }
     })})
+}
+
+if (!movies) {
+    return <div>Movie Loading....</div>
 }
 
 
@@ -78,6 +84,7 @@ return(
                                 // onChange={(event) => handleStar(index,event)} //function that takes in an event
                                 />
              })}
+             <button type="submit"> Update move</button>
         </form>
     )
 }
