@@ -11,9 +11,25 @@ const UpdateForm = (props) => {
         metascore: '',
         stars: []
 });
+
+const fetchMovie = id => {
+    axios
+      .get(`http://localhost:5000/api/movies/${id}`)
+      .then(res => this.setMovies(res.data))
+      .catch(err => console.log(err.response));
+  };
+
+//run this componentDidMount, componentDidUpdate with useEffect
+  useEffect(()=>{
+    fetchMovie(props.match.params.id);
+
+}, [props.match.params.id])
+
   
 
 const handleChange = e => setMovies({ ...Movie, [e.target.name]: e.target.value })
+
+//a function that accepts a value of another function
 const handleStar = index => e => {
     setMovies({...Movie, stars: Movie.stars.map((star, starIndex)=> {
         if (starIndex === index) {
@@ -50,19 +66,14 @@ return(
              value={movies.title}
              onChange={handleChange}
              />
-            {/* <input 
-             type="text"
-             name="title"
-             placeholder="title"
-             value={movie.title}
-             onChange={handleChange}/> */}
+          
 
              {movies.stars.map((starName, index)=> {
                  return <input type="text"
                                 placeholder="star"
                                 key={index}
                                 value={starName}
-                                onChange={handleStar(index)}
+                                onChange={handleStar(index)} //function that takes in an event
                                 />
              })}
         </form>
