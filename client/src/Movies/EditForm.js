@@ -14,6 +14,16 @@ const UpdateForm = (props) => {
   
 
 const handleChange = e => setMovies({ ...Movie, [e.target.name]: e.target.value })
+const handleStar = index => e => {
+    setMovies({...Movie, stars: Movie.stars.map((star, starIndex)=> {
+        if (starIndex === index) {
+            return e.target.value
+        } else {
+            return star;
+        }
+    })})
+}
+
 
 
 return(
@@ -47,14 +57,14 @@ return(
              value={movie.title}
              onChange={handleChange}/> */}
 
-             {/* {Movie.stars.map((starName, index)=> {
+             {movies.stars.map((starName, index)=> {
                  return <input type="text"
                                 placeholder="star"
                                 key={index}
                                 value={starName}
                                 onChange={handleStar(index)}
                                 />
-             })} */}
+             })}
         </form>
     )
 }
