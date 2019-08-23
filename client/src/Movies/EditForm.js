@@ -16,22 +16,22 @@ const fetchMovie = id => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
       .then(res => this.setMovies(res.data))
+      .then(res => console.log(res, 'res'))
       .catch(err => console.log(err.response));
   };
 
 //run this componentDidMount, componentDidUpdate with useEffect
   useEffect(()=>{
-    fetchMovie(props.match.params.id);
-
+    fetchMovie(props.match.params.id); //supposed to run our movie with fetchMovie callback
 }, [props.match.params.id])
 
   
 
-const handleChange = e => setMovies({ ...Movie, [e.target.name]: e.target.value })
+const handleChange = e => setMovies({ ...movies, [e.target.name]: e.target.value })
 
 //a function that accepts a value of another function
 const handleStar = index => e => {
-    setMovies({...Movie, stars: Movie.stars.map((star, starIndex)=> {
+    setMovies({...movies, stars: movies.stars.map((star, starIndex)=> {
         if (starIndex === index) {
             return e.target.value
         } else {
@@ -63,7 +63,7 @@ return(
              type="text"
              name="metascore"
              placeholder="metascore"
-             value={movies.title}
+             value={movies.metascore}
              onChange={handleChange}
              />
           
@@ -74,6 +74,7 @@ return(
                                 key={index}
                                 value={starName}
                                 onChange={handleStar(index)} //function that takes in an event
+                                // onChange={(event) => handleStar(index,event)} //function that takes in an event
                                 />
              })}
         </form>
