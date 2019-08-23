@@ -43,6 +43,15 @@ const handleStar = index => e => {
     })})
 }
 
+const handleSubmit = e => {
+    e.preventDefault();
+    axios.put(`http://localhost:5000/api/movies/${props.match.params.id}`, movies) //going to get the id out of our url, could have also put movies.id in instead of ..params.id..
+.then(res => {console.log(res) //no need for state management, when navigate back to the movie list it's going to create a get request, updating the updated value
+props.history.push('/')
+})
+
+}
+
 if (!movies) {
     return <div>Movie Loading....</div>
 }
@@ -50,7 +59,7 @@ if (!movies) {
 
 
 return(
-        <form>
+        <form onSubmit={handleSubmit}>
             <input
             type="text"
             name="title"
